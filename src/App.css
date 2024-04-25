@@ -30,7 +30,7 @@
     flex: 0 0 auto;
     margin: 0px 10px;
 }
-.posts {
+.posts, .explore, .upload, .reels, .profile {
     background-color: peachpuff;
     flex-grow: 1;
     display: flex;
