@@ -2,11 +2,15 @@ html, body {
     scrollbar-width: none;
     overscroll-behavior: none;
 }
+
 .App {
     display: flex;
     flex-direction: column; 
     width: 100%;
+    min-height: 100vh;
+    overflow: visible;
 }
+
 .topBar {
     background-color: white;
     height: 50px;
@@ -18,6 +22,7 @@ html, body {
     padding: 0px 10px;
     transform: translateY(-100%);
     transition: transform 0.1s;
+    z-index: 1;
 }
 
 .topBar.scrollUp {
@@ -27,6 +32,7 @@ html, body {
 .topBar > img {
     height: 30px;
 }
+
 .stories {
     height: 100px;
     display: flex;
@@ -39,20 +45,56 @@ html, body {
     scrollbar-width: none;
     scroll-behavior: smooth;
 }
+
 .story {
-    border-color: gray;
-    border: 2px solid;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    position: relative;
+    width: 66px;
+    height: 66px;
     flex: 0 0 auto;
     margin: 0px 10px;
-}
-.story img {
+    padding: 4px;
     border-radius: 50%;
+    background-image: linear-gradient(to top right, #FFDC80 , #FD1D1D, #C13584);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.story img {
+    position: relative;
+    border-radius: 50%;
+    border: 4px solid white;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+}
+
+.storyModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+}
+
+.storyModal img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
+
+.storyModal button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .post {
     padding-bottom: 5px;
     margin-bottom: 15px;
@@ -62,6 +104,7 @@ html, body {
     flex-direction: column;
     gap: 5px;
 }
+
 .pHeader {
     height: 50px;
     display: flex;
@@ -69,12 +112,14 @@ html, body {
     align-items: center;
     font-size: 14px;
 }
+
 .pHeader img {
     border-radius: 50%;
     border: 1px solid gray;
     width: 35px;
     height: 35px;
 }
+
 .media {
     border-color: gray;
     border: 2px solid;
@@ -83,6 +128,7 @@ html, body {
     height: calc(50vh * 1.25);
     flex: 0 0 auto;
 }
+
 .actions {
     height: 35px;
     display: flex;
@@ -90,19 +136,23 @@ html, body {
     justify-content: space-between;
     padding: 0px 10px;
 }
+
 .actions > div > img, .actions > img {
     height: 25px;
 }
+
 .actions > div {
     display: flex;
     gap: 20px;
 }
+
 .comment {
     border: none;
     background-color: rgba(255, 255, 255, 0);
     font: inherit;
     resize: none;
 }
+
 .posts, .explore, .upload, .reels, .profile {
     flex-grow: 1;
     display: flex;
@@ -110,19 +160,64 @@ html, body {
     height: fit-content;
     align-items: center;
 }
+
 .bottomBar {
     background-color: white;
-    height: 50px;
-    position: sticky;
+
+    height: 3.5rem;
+    width: 100vw;
+    position: fixed;
     bottom: 0px; 
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     border-top: 1px solid lightgray;
 }
-.bottomBar > a > img{
-    height: 30px;
+
+.bottomBar > * > *{
+    height: 2rem;
 }
+
 .temp {
     height: 100vh;
+}
+
+.active > #home {
+    fill: black;
+}
+
+#explore {
+    stroke-width: 3;
+    filter: blur(0.4px);
+}
+
+.active > #explore {
+    stroke-width: 5;
+    filter: blur(0.5px);
+}
+
+#reelsO {
+    stroke: rgb(0, 0, 0);
+    stroke-width: 3;
+}
+
+#reelsI {
+    fill: rgb(255, 255, 255);
+}
+
+#reelsT {
+    fill: rgb(0, 0, 0);
+}
+
+.active > #reels > #reelsO {
+    stroke: white;
+    stroke-width:   3;
+}
+
+.active > #reels > #reelsI {
+    fill: black;
+}
+
+.active > #reels > #reelsT {
+    fill: white;
 }

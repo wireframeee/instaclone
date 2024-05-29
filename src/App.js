@@ -18,8 +18,8 @@ function App() {
             <Route path="/reels" element={<Reels />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
+          <BottomBar />
         </Router>
-      <BottomBar />
     </div>
   );
 }

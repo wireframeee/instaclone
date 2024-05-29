@@ -1,9 +1,8 @@
 export default function upload() {
     return (
         <div className="upload">
-            <h1>Upload</h1>
             <div className="temp">
-                under construction
+                you cant upload stuff lol
             </div>
         </div>
     )

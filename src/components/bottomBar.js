@@ -1,16 +1,18 @@
-import home from "../icons/home.svg";
-import explore from "../icons/explore.svg";
+import { NavLink } from "react-router-dom";
+import { ReactComponent as Home } from "../icons/home.svg";
+import { ReactComponent as Explore } from "../icons/explore.svg";
 import upload from "../icons/upload.svg";
-import reels from "../icons/reels.svg";
+import { ReactComponent as Reels } from "../icons/reels.svg";
 
 function bottomBar() {
+
     return (
         <div className='bottomBar'>
-            <a href="/"><img src={home} alt="home"/></a>
-            <a href="/explore"><img src={explore} alt="explore"/></a>
-            <a href="/upload"><img src={upload} alt="upload"/></a>
-            <a href="/reels"><img src={reels} alt="reels"/></a>
-            <a href="/profile"><img src="https://placehold.co/180" alt="profile" style={{borderRadius:"50%"}}/></a>
+            <NavLink to="/" activeClassName="active"><Home id="home" alt="home"/></NavLink>
+            <NavLink to="/explore" activeClassName="active"><Explore id="explore" alt="explore"/></NavLink>
+            <NavLink to="/upload" activeClassName="active"><img src={upload} alt="upload"/></NavLink>
+            <NavLink to="/reels" activeClassName="active"><Reels id="reels" alt="reels"/></NavLink>
+            <NavLink to="/profile" activeClassName="active"><img src="https://placehold.co/180" alt="profile" style={{borderRadius:"50%"}}/></NavLink>
         </div>
     )
 }
