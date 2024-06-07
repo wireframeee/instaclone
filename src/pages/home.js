@@ -36,6 +36,7 @@ export default function Home() {
     const storyIndex = (index) => {
         setCurrentIndex(index);
         setIsModalOpen(true);
+        setTimeout(closeStory, 6000);
     }
 
     const closeStory = () => {
@@ -70,11 +71,15 @@ export default function Home() {
                 ))}
             </div>
             
-            {isModalOpen && <div className='storyModal' onClick={closeStory}>
+            {isModalOpen && <div className='storyModal' onTouchMove={closeStory}>
                 {currentIndex !== null && (
+                    <>
+                    <div className="storyBar">
+                        <div className='storyFill'></div>
+                    </div>
                     <img src={storyData[currentIndex].image} alt="story"></img>
+                    </>
                 )}
-                <button onClick={closeStory}>X</button>
             </div>}
             
             <div className='posts'>
