@@ -23,6 +23,7 @@ export default function Home() {
     let users = 10;
     const storyData = Array.from({ length: users }, (_, index) => ({
         image: "https://placehold.co/1080x1350",
+        pfp: "https://placehold.co/180",
     }));
     const [postsData, setPostsData] = useState(Array.from({ length: users }, (_, index) => ({
         likes: Math.floor(Math.random() * 999),
@@ -36,7 +37,7 @@ export default function Home() {
     const storyIndex = (index) => {
         setCurrentIndex(index);
         setIsModalOpen(true);
-        setTimeout(closeStory, 6000);
+        //setTimeout(closeStory, 4000);
     }
 
     const closeStory = () => {
@@ -66,19 +67,19 @@ export default function Home() {
             <div className='stories'>
                 {storyData.map((_, index) => (
                     <div className="story" onClick={() => storyIndex(index)} key={index}>
-                        <img src="https://placehold.co/180" alt="pfp"></img>
+                        <img src={storyData[index].pfp} alt="pfp" className='storyPfp' style={{border: "solid 4px white"}}></img>
                     </div>
                 ))}
             </div>
             
-            {isModalOpen && <div className='storyModal' onTouchMove={closeStory}>
+            {isModalOpen && <div className='storyModal' onTouchMove={closeStory} onDrag={closeStory}>
                 {currentIndex !== null && (
-                    <>
-                    <div className="storyBar">
-                        <div className='storyFill'></div>
+                    <div className='storyWrapper' style={{backgroundImage: `url(${storyData[currentIndex].image})`}}>
+                        <div className="storyBar">
+                            <div className='storyFill'></div>
+                        </div>
+                        <img src={storyData[currentIndex].pfp} alt="pfp" className='storyPfp storyPfpActive'></img>
                     </div>
-                    <img src={storyData[currentIndex].image} alt="story"></img>
-                    </>
                 )}
             </div>}
             
