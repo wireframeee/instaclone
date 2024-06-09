@@ -76,7 +76,7 @@ export default function Home() {
             {isModalOpen && <div className='storyModal' onTouchMove={closeStory} onDragEnd={closeStory}>
                 {currentIndex !== null && (
                     <div className='storyWrapper'>
-                        <img className='storyImage' src={userData[currentIndex].image} alt='story image' />
+                        <img className='storyImage' src={userData[currentIndex].image} alt='story'/>
                         <div class="gradientOverlay" />
                         <div className='storyHeader'>
                             <img src={userData[currentIndex].pfp} alt="pfp" />
