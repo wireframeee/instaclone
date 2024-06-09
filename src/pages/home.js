@@ -21,7 +21,8 @@ export default function Home() {
     }, 500), false);
 
     let users = 10;
-    const storyData = Array.from({ length: users }, (_, index) => ({
+    const userData = Array.from({ length: users }, (_, index) => ({
+        username: "username",
         image: "https://placehold.co/1080x1350",
         pfp: "https://placehold.co/180",
     }));
@@ -65,20 +66,25 @@ export default function Home() {
             </div>
             
             <div className='stories'>
-                {storyData.map((_, index) => (
+                {userData.map((_, index) => (
                     <div className="story" onClick={() => storyIndex(index)} key={index}>
-                        <img src={storyData[index].pfp} alt="pfp" className='storyPfp' style={{border: "solid 4px white"}}></img>
+                        <img src={userData[index].pfp} alt="pfp" className='storyPfp' style={{border: "solid 4px white"}}></img>
                     </div>
                 ))}
             </div>
             
-            {isModalOpen && <div className='storyModal' onTouchMove={closeStory} onDrag={closeStory}>
+            {isModalOpen && <div className='storyModal' onTouchMove={closeStory} onDragEnd={closeStory}>
                 {currentIndex !== null && (
-                    <div className='storyWrapper' style={{backgroundImage: `url(${storyData[currentIndex].image})`}}>
-                        <div className="storyBar">
-                            <div className='storyFill'></div>
+                    <div className='storyWrapper'>
+                        <img className='storyImage' src={userData[currentIndex].image} alt='story image' />
+                        <div class="gradientOverlay" />
+                        <div className='storyHeader'>
+                            <img src={userData[currentIndex].pfp} alt="pfp" />
+                            <div style={{color:"white"}}>{userData[currentIndex].username}</div>
                         </div>
-                        <img src={storyData[currentIndex].pfp} alt="pfp" className='storyPfp storyPfpActive'></img>
+                        <div className="storyBar">
+                            <div className='storyFill' />
+                        </div>
                     </div>
                 )}
             </div>}
@@ -88,8 +94,8 @@ export default function Home() {
                     <div className="post" key={index}>
                         <div className="pHeader">
                             <img src="https://placehold.co/180" alt="pfp"></img>
-                            <div className="username" style={{ fontWeight: "550" }}>username</div>
-                            <div className="uploadTime" style={{ fontWeight: "lighter" }}>• 1 d</div>
+                            <div style={{ fontWeight: "550" }}>{userData[index].username}</div>
+                            <div style={{ fontWeight: "lighter" }}>• 1 d</div>
                             <div className="options"></div>
                         </div>
                         <img className="media" src="https://placehold.co/1080x1350" alt="media"></img>
